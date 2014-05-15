@@ -1,0 +1,20 @@
+<!-- Default home page -->
+<link type="text/css" href='http://sailsjs.org/styles/fonts.css' rel='stylesheet'/>
+<div class="container clearfix">
+	<div class="main">
+		<ul>
+			<% for( var i = 0; i < games.length; i++ ) {%>
+			<li class='gameTemplate'><%= games[i] %>
+			<i src='<%= games[i].image %>'/>
+				<label><%= games[i].name %></label>
+				<p><%= games[i].description %></p>
+				<input type='button' data-game='<%= games[i].Id %>'/>
+				</li>
+				<% } %>
+			</ul>
+		</div>
+		<div class="side-bar">
+
+		</div>
+	</div>
+</div>

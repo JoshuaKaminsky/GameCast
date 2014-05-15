@@ -21,6 +21,11 @@ module.exports = {
 		type: 'integer',
 		required: true
 	},
+
+        imageUrl: {
+		type: 'string',
+		urlish: true
+	},
 	
   }
   
