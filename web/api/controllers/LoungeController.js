@@ -24,14 +24,15 @@ module.exports = {
    *    `/lounge`
    */
    index: function (req, res) {
-    
-    // Send a JSON response
-    return res.view();
-	
+
+	Game.find().exec(function (err, games) {
+		if (err) return res.send(500);
+		var lounge = {
+				games: games
+			     };
+		return res.view(lounge);
+	});
   },
-
-
-
 
   /**
    * Overrides for the settings in `config/controllers.js`

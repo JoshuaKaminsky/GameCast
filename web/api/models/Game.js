@@ -24,7 +24,7 @@ module.exports = {
 
         imageUrl: {
 		type: 'string',
-		urlish: true
+		url: true
 	},
 	
   }
