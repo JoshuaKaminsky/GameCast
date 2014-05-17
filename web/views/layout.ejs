@@ -20,8 +20,17 @@
       as you would normally: using <link/> tags.
       
     -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-    <!--
+	<!-- Optional theme -->
+	<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"> -->
+	
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<link href='../styles/main.css' rel='stylesheet'/>
+    
+	<!--
 
       Support for LESS included by default
       ================================================
@@ -37,10 +46,35 @@
 
   <body>
 
-    <!-- Include the view file for the current controller/route -->
-    <%- body %>
+	
+  
+	<!-- Wrap all page content here -->
+    <div id="wrap">
+		<div class="top-bar">
+			<div class="container clearfix">
+				<a href="/"><img class="logo" src="/images/logo.jpg" /></a>	
+				
+				<a class="pull-right btn" href="/login">login</a>
+			
+				<a class="pull-right btn" href="/register">register</a>	
+			</div>
+		</div>
+	
+		<!-- Begin page content -->
+		<div class="container">
+		
+			<!-- Include the view file for the current controller/route -->
+			<%- body %>
 
+		</div>
+    </div>    
 
+	<div id="footer">
+      <div class="container">
+        <p class="text-muted">gamecast, 2014</p>
+      </div>
+    </div>
+	
     <!--
 
       Client-side Javascript
@@ -57,7 +91,9 @@
     <script type="text/javascript" src="/js/sails.io.js"></script>
     <!-- listen on socket.io for incoming messages -->
     <script type="text/javascript" src="/js/app.js"></script>
-
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <!-- Your scripts here? -->
     <!-- Your scripts here? -->
     <!-- Your scripts here? -->
