@@ -56,26 +56,36 @@ body {
 }
 
 h1 {
-    color: #0c8da0;
+    color: #fff;
+	background-color: #001c20;
+	padding: .4em;
     font-size: 2em;
     font-weight: 300
 }
 
 h2 {
-    font-size: 1.5em;
+    color: #fff;
+	background-color: #001c20;
+	padding: .4em;
+	font-size: 1.5em;
     font-weight: 300;
     margin-top: 4%
 }
 
 h3 {
-    font-size: 1.25em;
+    color: #fff;
+	background-color: #001c20;
+	padding: .4em;
+	font-size: 1.25em;
     font-weight: 300;
     font-style: italic;
     margin-bottom: 5px
 }
 
 h4 {
-    color: #0c8da0;
+    color: #fff;
+	background-color: #001c20;
+	padding: .4em;
     font-weight: 300;
     font-size: 1.5em
 }
@@ -125,6 +135,16 @@ body {
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
+
+#footer .container {
+	height: 60px;
+}
+
+#footer p {
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
 
 .container {
     max-width: 1050px;
@@ -301,4 +321,9 @@ body {
 .logo {
 	width: 165px;
 	display: inline-block;
+}
+
+.gameTemplate {
+	display: inline-block;
+	margin: 5px;
 }

@@ -26,11 +26,11 @@ module.exports = {
    index: function (req, res) {
 
 	Game.find().exec(function (err, games) {
-		if (err) return res.send(500);
-		var lounge = {
-				games: games
-			     };
-		return res.view(lounge);
+		if (err) {
+			return res.send(500);
+		}
+		 
+		return res.view({ games: games });
 	});
   },
 
@@ -39,6 +39,5 @@ module.exports = {
    * (specific to LoungeController)
    */
   _config: {}
-
   
 };

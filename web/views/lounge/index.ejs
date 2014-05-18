@@ -1,13 +1,12 @@
 <div class="main">
 	<ul>
 		<% for( var i = 0; i < games.length; i++ ) {%>
-		<li class='gameTemplate'><%= games[i] %>
-		<i src='<%= games[i].image %>'/>
-			<label><%= games[i].name %></label>
-			<p><%= games[i].description %></p>
-			<input type='button' data-game='<%= games[i].Id %>'/>
+			<li class='gameTemplate'>
+				<i style="width:60px; height:60px" src='<%= games[i].imageUrl %>'></i>
+				<label><%= games[i].name %></label>
+				<p><%= games[i].description %></p>
+				<button data-game='<%= games[i].Id %>'>PLAY ></button>
 			</li>
-			<% } %>
-		</ul>
-	</div>
+		<% } %>
+	</ul>
 </div>

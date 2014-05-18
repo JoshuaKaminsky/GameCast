@@ -2,26 +2,28 @@
     <div class="main">
         <h1 id="main-title">register</h1>
 
-		<br/>
+		<hr/>
 		
-		<form>
-			<div class="input-group">
-				  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-				  <input type="text" class="form-control" placeholder="email">
+		<form class="clearfix" role="form">
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+					<input type="text" class="form-control" placeholder="email" required>
+				</div>
 			</div>
 			
-			<br/>
-			
-			<div class="input-group">
-				  <span class="input-group-addon"><i class="fa fa-unlock"></i></span>
-				  <input type="password" class="form-control" placeholder="password">
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-unlock"></i></span>
+					<input type="password" class="form-control" placeholder="password" required>
+				</div>
 			</div>
 			
-			<br/>
-			
-			<div class="input-group">
-				  <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-				  <input type="password" class="form-control" placeholder="password confirmation">
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+					<input type="password" class="form-control" placeholder="password confirmation" required>
+				</div>
 			</div>
 			
 			<a class="btn" href="/auth/github/">
@@ -36,7 +38,7 @@
 				<i class="fa fa-google"></i> google
 			</a>
 			
-			<input type="submit" class="btn btn-default pull-right" content="register"></input>
+			<button type="submit" class="btn btn-default pull-right">register</button>
 		</form>
 		
     </div>    

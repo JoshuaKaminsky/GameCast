@@ -22,9 +22,9 @@ module.exports = {
 		required: true
 	},
 
-        imageUrl: {
-		type: 'string',
-		url: true
+	imageUrl: {
+		type: 'url',
+		required: true
 	},
 	
   }
