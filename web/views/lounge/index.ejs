@@ -2,10 +2,14 @@
 	<ul>
 		<% for( var i = 0; i < games.length; i++ ) {%>
 			<li class='gameTemplate'>
-				<img src='<%= games[i].imageUrl %>'>
+				<div class="gameImage">
+					<img class="center-block" src='<%= games[i].imageUrl %>'>
+				</div>
 				<label><%= games[i].name %></label>
+				<span class="pull-right"><%= games[i].minPlayers %> to <%= games[i].maxPlayers %> players </span>
+				<hr/>
 				<p><%= games[i].description %></p>
-				<button class="btn" data-game='<%= games[i].Id %>'>PLAY ></button>
+				<a href="game/<%= games[i].id %>" class="btn pull-right">PLAY ></a>
 			</li>
 		<% } %>
 	</ul>

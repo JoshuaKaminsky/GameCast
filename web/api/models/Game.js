@@ -23,7 +23,7 @@ module.exports = {
 	},
 
 	imageUrl: {
-		type: 'url',
+		type: 'string',
 		required: true
 	},
 	

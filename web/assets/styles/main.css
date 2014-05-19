@@ -307,7 +307,7 @@ body {
 }
 
 .btn:hover {
-	background: #881c20;
+	background: #531308;
     color: #fff;
 }
 
@@ -326,12 +326,40 @@ body {
 .gameTemplate {
 	display: inline-block;
 	margin: 15px;
-	padding: 5xp;
-	
+	padding: 5px;
+	border: solid 1px #001c20;
+}
+
+.gameTemplate .gameImage {
+	background-color: #FDF7EF; 
+	margin-bottom: 4px;
 }
 
 .gameTemplate img {
 	width: 150px;
 	height: 150px;
 	
+}
+
+.gameTemplate hr {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.gameTemplate p {
+	display: block; /* Fallback for non-webkit */
+	display: -webkit-box;
+	width: 350px;
+	height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+	margin: 0 auto;
+	font-size: $font-size;
+	line-height: $line-height;
+	-webkit-line-clamp: $lines-to-show;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.gameTemplate .btn {
+	margin-bottom: 0;
 }
