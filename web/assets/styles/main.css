@@ -325,5 +325,13 @@ body {
 
 .gameTemplate {
 	display: inline-block;
-	margin: 5px;
+	margin: 15px;
+	padding: 5xp;
+	
+}
+
+.gameTemplate img {
+	width: 150px;
+	height: 150px;
+	
 }
