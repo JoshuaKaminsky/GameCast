@@ -115,6 +115,12 @@ body {
   /* The html and body elements cannot have any padding or margin. */
 }
 
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {   
+	border-color: #001c20;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0) inset, 0 0 8px #531308;
+	outline: 0 none;
+}
+
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
