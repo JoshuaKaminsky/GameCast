@@ -34,24 +34,24 @@ module.exports.routes = {
   // (This would also work if you had a file at: `/views/home.ejs`)
   '/': 'LoungeController',
 
-  '/register' : {
-    controller : 'auth',
-    action     : 'register'
-  },
-  
   'post /register' : {
 	controller : 'auth',
 	action : 'registerCallback'
   },
   
-  '/login' : {
+  '/register' : {
     controller : 'auth',
-    action     : 'login'
+    action     : 'register'
   },
   
   'post /login' : {
 	controller : 'auth',
 	action : 'loginCallback'
+  },
+  
+  '/login' : {
+    controller : 'auth',
+    action     : 'login'
   },
   
   '/logout' : {
