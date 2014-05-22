@@ -47,7 +47,18 @@ module.exports.routes = {
   '/logout' : {
     controller : 'auth',
     action     : 'logout'
-  }
+  },
+
+  '/game/:id' : {
+    controller : 'GameController',
+    action     : 'game'
+  },
+
+  '/gameInstance/addPlayer/:id/:playerId' : {
+    controller : 'GameInstanceController',
+    action     : 'addPlayer'
+  },
+
   /*
   // But what if you want your home page to display
   // a signup form located at `views/user/signup.ejs`?
