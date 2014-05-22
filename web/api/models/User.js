@@ -1,32 +1,33 @@
 module.exports = {
 
-	beforeCreate: function (attributes, next) {
-		
-	  },
+	// Lifecycle Callbacks
+	beforeCreate: function(values, next) {
+	  next();
+	},
 
-  attributes : {
-    
-	name: {
-		  type: 'string',
-		  required: true
-    },
+	attributes : {
+	
+		emailaddress: {
+			type: 'email',
+			required: true
+		},
+	
+		name: {
+			type: 'string',
+			required: true
+		},
 
-	password: {
-		  type: 'string',
-		  required: true,
-		  minLength: 6
-    },
+		password: {
+			type: 'string'
+		},
 	
-	salt: {
-		type: 'string',
-		required: true
-	}
-	
-	/*emailAddress: {
-		type: 'email',
-		required: true
-	}*/
-	
-  }
-  
+		salt: {
+			type: 'string'
+		},
+
+		provider : {
+			type: 'string',
+			required: true
+		}
+	}  
 };

@@ -19,30 +19,47 @@ var passport = require('passport');
 
 module.exports = {
 
-	register: function (req, res) {
-        res.view();
+	register: function (req, response) {
+        response.view();
     },
 
-    login: function (req, res) {
-        res.view();
+    login: function (req, response) {
+        response.view();
     },
 
-    logout: function (req, res) {
-        req.logout();
-        res.redirect('/');
+    logout: function (request, response) {
+        request.logout();
+        response.redirect('/');
     },
 
-	internalRegister: function( req, res) {
+	registerCallback: function( request, response) {
+		//validate inputs
+		if(!request.body.name) {
+			return response.json({ error: 'name is required' }, 400);
+		}
+		
+		if(!request.body.emailAddress) {
+			return response.json({ error: 'email is required' }, 400);
+		}
+		
+		if(!request.body.password || !request.body.passwordConfirmation) {
+			return response.json({ error: 'password is required' }, 400);
+		}
+		
+		if(request.body.password != request.body.passwordConfirmation) {
+			return response.json({ error: 'password confirmation does not match password' }, 400);
+		}
+		
 		//check if user email is unique
 		User.findOne({ email: request.body.emailAddress }).done(function (err, user) {
-			if (err) response.json({ error: 'email already exists' }, 400);
+			if (err) return response.json({ error: 'email already exists' }, 400);
 		});
 		
 		//get password hash and salt
 		var bcrypt = require('bcrypt');
 
 		bcrypt.genSalt(10, function(err, salt) {
-			if (err) response.json({ error: 'Server error' }, 500);
+			if (err) return response.json({ error: 'Server error' }, 500);
 
 			if(salt) {
 				bcrypt.hash(request.body.password, salt, function(err, hash) {
@@ -51,12 +68,29 @@ module.exports = {
 					if(hash) {
 						var user = {
 							name: request.body.name,
-							email: request.body.emailAddress,
-							passwordHash: hash,
+							emailaddress: request.body.emailAddress,
+							password: hash,
 							salt: salt
 						};
 						
-						User.create(user);
+						User.create(user).done(function (err, user) {
+							if (err) {
+								console.log(err);
+								response.view('500');
+								return;
+							}
+							
+							request.logIn(user, function (err) {
+								if (err) {
+									console.log(err);
+									response.view('500');
+									return;
+								}
+
+								response.redirect('/login');
+								return;
+							});
+						});
 						
 						return response.redirect('/login');
 					};
@@ -65,95 +99,61 @@ module.exports = {
 		});
 	},
 	
-	internalLogin: function( req, res) {
-		var bcrypt = require('bcrypt');
-
-		User.findOne({ name: request.body.name }).done(function (err, user) {
-			if (err) response.json({ error: 'DB error' }, 500);
-
-			if (user) {
-				
-				bcrypt.hash(request.body.password, user.salt, function(err, hash) {
-					if (err) response.json({ error: 'Server error' }, 500);
-				
-					if(hash) {
-						bcrypt.compare(hash, user.password, function (err, match) {
-						  if (err) response.json({ error: 'Server error' }, 500);
-
-						  if (match) {
-							request.session.user = user.id;
-							response.json(user);
-						  } else {
-							if (request.session.user) {
-								request.session.user = null;
-							}
-							
-							response.json({ error: 'Invalid password' }, 400);
-						  }
-						});
-					};
-				});
-				
-			} else {
-				response.json({ error: 'User not found' }, 404);
+	loginCallback: function( request, response) {
+		passport.authenticate('local', function(err, user, info) {
+			if ((err) || (!user)) {
+				response.redirect('/login');
+				return;
 			}
-		});
+ 
+			request.logIn(user, function(err) {
+				if (err) {
+					response.view();
+					return;
+				}
+ 
+				response.redirect('/');
+				return;
+			});
+		})(request, response);		
 	},
-    // http://developer.github.com/v3/
-    // http://developer.github.com/v3/oauth/#scopes
-    github: function (req, res) {
-        passport.authenticate('github', { failureRedirect: '/login' },
-            function (err, user) {
-                req.logIn(user, function (err) {
-                    if (err) {
-                        console.log(err);
-                        res.view('500');
-                        return;
-                    }
-
-                    res.redirect('/');
-                    return;
-                });
-            })(req, res);
-    },
-
+    
     // https://developers.facebook.com/docs/
     // https://developers.facebook.com/docs/reference/login/
-    facebook: function (req, res) {
+    facebook: function (request, response) {
         passport.authenticate('facebook', { failureRedirect: '/login', scope: ['email'] },
             function (err, user) {
-                req.logIn(user, function (err) {
+                request.logIn(user, function (err) {
                     if (err) {
                         console.log(err);
-                        res.view('500');
+                        response.view('500');
                         return;
                     }
 
-                    res.redirect('/');
+                    response.redirect('/');
                     return;
                 });
-            })(req, res);
+            })(request, response);
     },
 
     // https://developers.google.com/
     // https://developers.google.com/accounts/docs/OAuth2Login#scope-param
-    google: function (req, res) {
-        passport.authenticate('google', { failureRedirect: '/login', scope:['https://www.googleapis.com/auth/plus.login','https://www.googleapis.com/auth/userinfo.profile','https://www.googleapis.com/auth/userinfo.email'] },
+    google: function (request, response) {
+        passport.authenticate('google', { failureRedirect: '/login', scope:['https://www.googleapis.com/auth/userinfo.email'] },
             function (err, user) {
-                req.logIn(user, function (err) {
+                request.logIn(user, function (err) {
                     if (err) {
                         console.log(err);
-                        res.view('500');
+                        response.view('500');
                         return;
                     }
 
-                    res.redirect('/');
+                    response.redirect('/');
                     return;
                 });
-            })(req, res);
+            })(request, response);
     },
-
-
+	
     /**
     * Overrides for the settings in `config/controllers.js`
     * (specific to AuthController)
