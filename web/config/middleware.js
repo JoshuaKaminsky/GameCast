@@ -53,46 +53,46 @@ var verifyHandler = function (token, tokenSecret, profile, done) {
 };
 
 passport.serializeUser(function (user, done) {
-	console.log('serializeUser id: ' + user.id);
-    done(null, user.id);
+	console.log('serializeUser user: %j', user);
+    done(null, { id: user.id, name: user.name} );
 });
 
-passport.deserializeUser(function (id, done) {
-	console.log('deserializeUser id: ' + id); 
-    User.findOne({id: id}).done(function (err, user) {			
+passport.deserializeUser(function (data, done) {
+	console.log('deserializeUser user: %j', data); 
+    User.findOne({id: data.id}).done(function (err, user) {			
         done(null, user);
     });
 });
-
-
 
 module.exports = {
 
     express: {
         customMiddleware: function (app) {    
 		
-		passport.use(new LocalStrategy({
-				usernameField: 'emailAddress',
-				passwordField: 'password'
-			},
-			loginHandler
-		));
+			passport.use(new LocalStrategy({
+					usernameField: 'emailAddress',
+					passwordField: 'password'
+				},
+				loginHandler
+			));
 
-		passport.use(new FacebookStrategy({
-				clientID: "237217273141476",
-				clientSecret: "a03c9e7e93407e3ab41a7f6e3838d49b",
-				callbackURL: "http://localhost:1337/auth/facebook/callback"
-			},
-			verifyHandler
-		));
+			passport.use(new FacebookStrategy({
+					clientID: "237217273141476",
+					clientSecret: "a03c9e7e93407e3ab41a7f6e3838d49b",
+					callbackURL: "http://localhost:1337/auth/facebook/callback"
+					//callbackURL: "http://gamecast.herokuapp.com/auth/facebook/callback"
+				},
+				verifyHandler
+			));
 
-		passport.use(new GoogleStrategy({
-				clientID: '879176136570-ujh7uepkb8gpjhbp4ps5jrug02e2g2h8.apps.googleusercontent.com',
-				clientSecret: 'iENYXdeAGGNMaIMuiE8P4Lig',
-				callbackURL: 'http://localhost:1337/auth/google/callback'
-			},
-			verifyHandler
-		));
+			passport.use(new GoogleStrategy({
+					clientID: '879176136570-ujh7uepkb8gpjhbp4ps5jrug02e2g2h8.apps.googleusercontent.com',
+					clientSecret: 'iENYXdeAGGNMaIMuiE8P4Lig',
+					callbackURL: "http://localhost:1337/auth/google/callback"
+					//callbackURL: 'http://gamecast.herokuapp.com/auth/google/callback'
+				},
+				verifyHandler
+			));
 
 			app.use(passport.initialize());
             app.use(passport.session());

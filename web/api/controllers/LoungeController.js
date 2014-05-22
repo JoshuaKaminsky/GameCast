@@ -25,6 +25,8 @@ module.exports = {
    */
    index: function (req, res) {
 
+	console.log('%j', req.session);
+	
 	Game.find().exec(function (err, games) {
 		if (err) {
 			return res.send(500);
