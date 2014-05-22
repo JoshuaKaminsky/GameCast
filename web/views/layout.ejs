@@ -56,13 +56,11 @@
 			<div class="container clearfix">
 				<a href="/"><img class="logo" src="/images/logo.jpg" /></a>	
 				
-				<%if (!req.session.passport.user) { %>
+				<%if (!req.isAuthenticated()) { %>
 					<a class="pull-right btn" href="/login">login</a>
 				
 					<a class="pull-right btn" href="/register">register</a>	
-				<% } %>
-				
-				<%if (req.session.passport.user) { %>
+				<% } else { %>				
 					<a class="pull-right btn" href="/logout">logout</a>
 				
 					<a class="pull-right btn" href="/"> <%= req.session.passport.user.name %> </a>	
