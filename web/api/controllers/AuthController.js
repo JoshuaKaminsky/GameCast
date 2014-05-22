@@ -70,7 +70,8 @@ module.exports = {
 							name: request.body.name,
 							emailaddress: request.body.emailAddress,
 							password: hash,
-							salt: salt
+							salt: salt,
+							provider: 'local'
 						};
 						
 						User.create(user).done(function (err, user) {
@@ -87,7 +88,7 @@ module.exports = {
 									return;
 								}
 
-								response.redirect('/login');
+								response.redirect('/');
 								return;
 							});
 						});
@@ -100,6 +101,7 @@ module.exports = {
 	},
 	
 	loginCallback: function( request, response) {
+		console.log(JSON.stringify(request.body, null, 1));
 		passport.authenticate('local', function(err, user, info) {
 			if ((err) || (!user)) {
 				response.redirect('/login');

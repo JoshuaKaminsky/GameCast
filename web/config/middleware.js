@@ -35,11 +35,16 @@ var verifyHandler = function (token, tokenSecret, profile, done) {
     process.nextTick(function () {
 		console.log('oauth response: %j', profile)
 		
-        User.findOne({emailaddress: profile.emailAddress}).done(function (err, user) {
+		if(!profile.emails || !profile.emails[0] || !profile.emails[0].value) {
+			return done(null, null);
+		}
+		var emailAddress = profile.emails[0].value;
+		
+        User.findOne({emailaddress: emailAddress}).done(function (err, user) {
 			if (err || user) {
 				return done(null, user);
 			} else {
-				User.create({ name: profile.displayName, emailaddress: profile.emailAddress, provider: profile.provider }).done(function (err, user) {
+				User.create({ name: profile.displayName, emailaddress: emailAddress, provider: profile.provider }).done(function (err, user) {
 					return done(err, user);
 				});
 			}
@@ -54,35 +59,41 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(function (id, done) {
 	console.log('deserializeUser id: ' + id); 
-    User.findOne({id: id}).done(function (err, user) {
-        done(err, user)
+    User.findOne({id: id}).done(function (err, user) {			
+        done(null, user);
     });
 });
 
-passport.use(new LocalStrategy(
-	loginHandler
-));
 
-passport.use(new FacebookStrategy({
-		clientID: "237217273141476",
-		clientSecret: "a03c9e7e93407e3ab41a7f6e3838d49b",
-		callbackURL: "http://localhost:1337/auth/facebook/callback"
-	},
-	verifyHandler
-));
-
-passport.use(new GoogleStrategy({
-		clientID: '879176136570-ujh7uepkb8gpjhbp4ps5jrug02e2g2h8.apps.googleusercontent.com',
-		clientSecret: 'iENYXdeAGGNMaIMuiE8P4Lig',
-		callbackURL: 'http://localhost:1337/auth/google/callback'
-	},
-	verifyHandler
-));
 
 module.exports = {
 
     express: {
         customMiddleware: function (app) {    
+		
+		passport.use(new LocalStrategy({
+				usernameField: 'emailAddress',
+				passwordField: 'password'
+			},
+			loginHandler
+		));
+
+		passport.use(new FacebookStrategy({
+				clientID: "237217273141476",
+				clientSecret: "a03c9e7e93407e3ab41a7f6e3838d49b",
+				callbackURL: "http://localhost:1337/auth/facebook/callback"
+			},
+			verifyHandler
+		));
+
+		passport.use(new GoogleStrategy({
+				clientID: '879176136570-ujh7uepkb8gpjhbp4ps5jrug02e2g2h8.apps.googleusercontent.com',
+				clientSecret: 'iENYXdeAGGNMaIMuiE8P4Lig',
+				callbackURL: 'http://localhost:1337/auth/google/callback'
+			},
+			verifyHandler
+		));
+
 			app.use(passport.initialize());
             app.use(passport.session());
         }
