@@ -1,11 +1,13 @@
 var passport = require('passport')
 	, bcrypt = require('bcrypt')
-	, LocalStrategy = require('passport-local').Strategy;
+	, LocalStrategy = require('passport-local').Strategy
     , FacebookStrategy = require('passport-facebook').Strategy
     , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var loginHandler = function(username, password, done) {
 	process.nextTick(function() { 
+		console.log(username);
+		console.log(password);
 		User.findOne({ emailaddress: username }).done(function(err, user) {
 			if (err) {
 				return done(err);
