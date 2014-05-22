@@ -342,7 +342,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 
 .gameTemplate img {
-	max-width: 350px;
+	max-width: 250px;
 	max-height: 150px;
 	
 }
