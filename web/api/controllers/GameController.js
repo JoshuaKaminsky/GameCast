@@ -17,7 +17,27 @@
 
 module.exports = {
     
-  
+   game: function(req, res) {
+       // Request includes the game ID, let's find it.
+       var game = Game.findOne( { 'id': req.param('id') }).done(
+       	    function(err, game) {
+       	    	if (err) {
+       	    		return console.log(err)
+       	    	}
+       	    	console.log("Got game: %j", game)
+       	    	// Found a game, what are its instances??
+       	    	GameInstance.find({ gameId : game.id}).done(
+       	    		function(err, gameInstances) {
+       	    			if (err) {
+       	    				return console.log(err)
+       	    			}
+       	    			console.log("Return gameInstances: %j", gameInstances)
+		       	    	return res.view( { 'game': game, 'gameInstances': gameInstances })
+		       	    }
+       	    	)
+       	    }
+       	)
+   },
 
 
   /**

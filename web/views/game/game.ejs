@@ -1,0 +1,9 @@
+<div class="main">
+    <% for( var i = 0; i < gameInstances.length; i++ ) {%>
+        <div class="row">
+            <div class="col-md-4"><%= gameInstances[i] %></div>
+            <div class="col-md-4"><%= gameInstances[i].name %></div>
+            <div class="col-md-4"><%= gameInstances[i].gameId %></div>
+        </div>
+    <% } %>
+</div>

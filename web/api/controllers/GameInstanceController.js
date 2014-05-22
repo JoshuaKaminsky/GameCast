@@ -17,7 +17,32 @@
 
 module.exports = {
     
-  
+  'addPlayer' : function(req, res) {
+  	var gameInstanceId = req.param('id')
+  	var playerId = req.param('playerId')
+  	GameInstance.findOne( { 'id' : gameInstanceId } ).done(
+  		function(err, gameInstance) {
+  			if (err) {
+  				return console.log("fuck you (gameInstanceController")
+  			}
+
+  			console.log("gameInstance = %j", gameInstance)
+
+  			// update its players
+  			if (!gameInstance.playerIds) {
+  				gameInstance.playerIds = [ ]
+  			}
+  			gameInstance.playerIds.push(playerId)
+  			gameInstance.save(function(err) {
+  				if (err) {
+  					return console.log("Can't update gameInstance: %s", err)
+  				} else {
+  					return res.send(200)
+  				}
+  			})
+
+  		})
+  },
 
 
   /**

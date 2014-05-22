@@ -57,6 +57,16 @@ module.exports.routes = {
   '/logout' : {
     controller : 'auth',
     action     : 'logout'
+  },
+
+  '/game/:id' : {
+    controller : 'GameController',
+    action     : 'game'
+  },
+
+  '/gameInstance/addPlayer/:id/:playerId' : {
+    controller : 'GameInstanceController',
+    action     : 'addPlayer'
   }
   
   /*
