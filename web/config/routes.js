@@ -39,15 +39,26 @@ module.exports.routes = {
     action     : 'register'
   },
   
+  'post /register' : {
+	controller : 'auth',
+	action : 'registerCallback'
+  },
+  
   '/login' : {
     controller : 'auth',
     action     : 'login'
+  },
+  
+  'post /login' : {
+	controller : 'auth',
+	action : 'loginCallback'
   },
   
   '/logout' : {
     controller : 'auth',
     action     : 'logout'
   }
+  
   /*
   // But what if you want your home page to display
   // a signup form located at `views/user/signup.ejs`?
@@ -91,7 +102,7 @@ module.exports.routes = {
   // You would want to define the following route to handle your form:
   'post /signup': 'UserController.signup'
 
-
+  
   // What about the ever-popular "vanity URLs" aka URL slugs?
   // (you might remember doing this with `mod_rewrite` in Apache)
   //
