@@ -16,15 +16,15 @@ module.exports.policies = {
 
   // Default policy for all controllers and actions
   // (`true` allows public access) 
-  '*': true,
+  '*': 'authenticated',
 
   'lounge' : {
 	'index' : true
   },
   
   'auth': {
-    'register': true,
-	'login': true
+    '*': true,
+	'logout': 'authenticated'
   }
 
   /*

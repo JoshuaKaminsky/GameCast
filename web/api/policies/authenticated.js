@@ -12,7 +12,7 @@ module.exports = function (req, res, ok) {
 		req.session.passport &&
 		req.session.passport.user)
 		{
-			return next();
+			return ok();
 		}
  
 		res.json(401);
@@ -22,7 +22,7 @@ module.exports = function (req, res, ok) {
 	{
 		if(req.isAuthenticated())
 		{
-			return next();
+			return ok();
 		}
 		
 		res.redirect('/login');
