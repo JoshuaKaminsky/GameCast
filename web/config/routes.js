@@ -59,7 +59,7 @@ module.exports.routes = {
     action     : 'logout'
   },
 
-  '/game/:id' : {
+  '/game/lounge/:id' : {
     controller : 'GameController',
     action     : 'game'
   },
