@@ -19,23 +19,43 @@ module.exports = {
     
    game: function(req, res) {
        // Request includes the game ID, let's find it.
-       var game = Game.findOne( { 'id': req.param('id') }).done(
+       Game.findOne( { 'id': req.param('id') }).done(
        	    function(err, game) {
        	    	if (err) {
        	    		return console.log(err)
        	    	}
-       	    	console.log("Got game: %j", game)
+
        	    	// Found a game, what are its instances??
        	    	GameInstance.find({ gameId : game.id}).done(
        	    		function(err, gameInstances) {
        	    			if (err) {
        	    				return console.log(err)
        	    			}
-       	    			console.log("Return gameInstances: %j", gameInstances)
-		       	    	return res.view( { 'game': game, 'gameInstances': gameInstances })
-		       	    }
-       	    	)
-       	    }
+
+                  for (var i = 0; i < gameInstances.length; i++) {
+                    gameInstances[i].playerNames = [ ]
+                    for (var j = 0; j < gameInstances[i].playerIds.length; j++) {
+                      User.findOne( { 'id' : gameInstances[i].playerIds[j] } ).done(
+                        function(err, user) {
+                          if (err) {
+                            return res.send(404)
+                          }
+
+                          if (!user) {
+                            console.log("Can't find user for id: %s", gameInstances[i].playerIds[j])
+                            return res.send(201)
+                          }
+
+                          gameInstances[i].playerNames.push(user.name)
+                        }
+                      )
+                    }
+                  }
+
+                  return res.view( { 'game': game, 'gameInstances': gameInstances })
+                }
+              )
+            }
        	)
    },
 

@@ -10,6 +10,11 @@ module.exports = {
 	playerId: {	
 		type: 'integer',		
 		required: true
+	},
+
+	name: {
+		type: 'string',
+		required: true
 	}
 
   }
