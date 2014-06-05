@@ -37,15 +37,15 @@ module.exports.session = {
   // Uncomment the following lines to use your Mongo adapter as a session store
   adapter: 'mongo',
   
-  host: 'localhost',
-  port: 27017,
-  db: 'gamegastdb',
-  collection: 'sessions',
+  //host: 'localhost',
+  //port: 27017,
+  //db: 'gamegastdb',
+  //collection: 'sessions',
   
   // Optional Values:
   //
   // # Note: url will override other connection settings
-  // url: 'mongodb://user:pass@host:port/database/collection',
+  url: 'mongodb://gamecastuser:howaboutthebestpasswordever!@kahana.mongohq.com:10020/gamecast_staging/sessions',
   //
   // username: '',
   // password: '',

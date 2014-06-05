@@ -18,12 +18,19 @@ module.exports.adapters = {
   // in a model definition, 'default' will be used.
   'default': 'mongo',
 
+  /*
   mongo: {
     module   : 'sails-mongo',
     host     : 'localhost',
     user     : '',
     password : '',
     database : 'gamecastdb'
+  },
+  */
+  
+  mongo: {
+    module: 'sails-mongo',
+    url: "mongodb://gamecastuser:howaboutthebestpasswordever!@kahana.mongohq.com:10020/gamecast_staging"
   },
 
   // In-memory adapter for DEVELOPMENT ONLY
