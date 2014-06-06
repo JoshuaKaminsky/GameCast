@@ -32,7 +32,6 @@ module.exports = {
 
 				for (var gameInstanceIndex = 0; gameInstanceIndex < gameInstances.length; gameInstanceIndex++) {
 					var gameInstance = gameInstances[gameInstanceIndex];
-
 					gameInstance.playerNames = [];
 
 					User.find({'id' : gameInstance.playerIds}).done(function (err, players) {
