@@ -33,20 +33,23 @@ module.exports = {
        	    			}
 
                   for (var i = 0; i < gameInstances.length; i++) {
-                    gameInstances[i].playerNames = [ ]
-                    for (var j = 0; j < gameInstances[i].playerIds.length; j++) {
-                      User.findOne( { 'id' : gameInstances[i].playerIds[j] } ).done(
+					var gameInstance = gameInstances[i];
+					
+					gameInstance.playerNames = [ ]
+                    
+					for (var j = 0; j < gameInstance.playerIds.length; j++) {
+                      User.findOne( { 'id' : gameInstance.playerIds[j] } ).done(
                         function(err, user) {
                           if (err) {
                             return res.send(404)
                           }
 
                           if (!user) {
-                            console.log("Can't find user for id: %s", gameInstances[i].playerIds[j])
+                            console.log("Can't find user for id: %s", gameInstance.playerIds[j])
                             return res.send(201)
                           }
 
-                          gameInstances[i].playerNames.push(user.name)
+                          gameInstance.playerNames.push(user.name)
                         }
                       )
                     }
