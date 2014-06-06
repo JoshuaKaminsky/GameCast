@@ -3,7 +3,7 @@ module.exports = {
   attributes: {
   	
   	gameId: {
-  		type: 'int',
+  		type: 'string',
   		required: true
   	},
 
@@ -11,13 +11,22 @@ module.exports = {
   		type: 'array',
   	},
 
-  	name: 'string',
+	ownerId: {
+		type: 'string',
+  		required: true
+	},
+	
+  	name: {
+		type: 'string',
+  		required: true
+	},
 
-  	status : 'string',
+  	status : {
+		type: 'string',
+  		required: true
+	},
 
 	gameStateKey : 'string'
-
-
 	
   }
 
