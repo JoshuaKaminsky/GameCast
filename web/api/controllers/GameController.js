@@ -19,13 +19,17 @@ module.exports = {
 
 	game : function (req, res) {
 		// Request includes the game ID, let's find it.
-		Game.findOne({'id' : req.param('id')}).done(function (err, game) {
+		Game.findOne({
+			'id' : req.param('id')
+		}).done(function (err, game) {
 			if (err) {
 				return console.log(err)
 			}
 
 			// Found a game, what are its instances??
-			GameInstance.find({gameId : game.id}).done(function (err, gameInstances) {
+			GameInstance.find({
+				gameId : game.id
+			}).done(function (err, gameInstances) {
 				if (err) {
 					return console.log(err)
 				}
@@ -34,13 +38,15 @@ module.exports = {
 					var gameInstance = gameInstances[gameInstanceIndex];
 					gameInstance.playerNames = [];
 
-					User.find({'id' : gameInstance.playerIds}).done(function (err, players) {
+					User.find({
+						'id' : gameInstance.playerIds
+					}).done(function (err, players) {
 						if (err) {
 							return console.log(err);
 						}
-                        
-                        console.log('players : %j', players);
-                        
+
+						console.log('players : %j', players);
+
 						for (var playerIndex = 0; playerIndex < players.length; playerIndex++) {
 							var player = players[playerIndex];
 
@@ -51,17 +57,17 @@ module.exports = {
 
 							gameInstance.playerNames.push(player.name);
 						}
-                        
-                        console.log('gameInstance %j', gameInstances);
-                        
-                        return res.view({
-                            'game' : game,
-                            'gameInstances' : gameInstances
-                        });
+
+						console.log('gameInstance %j', gameInstances);
+
+						return res.view({
+							'game' : game,
+							'gameInstances' : gameInstances
+						});
 					});
 				}
-			});            
-			
+			});
+
 		});
 	},
 
