@@ -67,6 +67,21 @@ module.exports.routes = {
   '/gameInstance/addPlayer/:id/:playerId' : {
     controller : 'GameInstanceController',
     action     : 'addPlayer'
+  },
+  
+  '/aboutUs' : {
+    controller : 'HomeController',
+    action : 'aboutUs'      
+  },
+  
+  '/TermsAndConditions' : {
+    controller : 'HomeController',
+    action : 'termsAndConditions'      
+  },
+  
+  '/contactUs' : {
+    controller : 'HomeController',
+    action : 'contactUs'      
   }
   
   /*
