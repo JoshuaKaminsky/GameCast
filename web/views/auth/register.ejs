@@ -1,48 +1,46 @@
-<div class="container clearfix">
-    <div class="main">
-        <h1 id="main-title">register</h1>
+<div class="main">
+    <h1>register</h1>
 
-		<hr/>
+	<hr/>
+	
+	<form class="clearfix" role="form" method="post">
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="text" class="form-control" placeholder="name" name="name" required>
+			</div>
+		</div>
 		
-		<form class="clearfix" role="form" method="post">
-			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-user"></i></span>
-					<input type="text" class="form-control" placeholder="name" name="name" required>
-				</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+				<input type="text" class="form-control" placeholder="email" name="emailAddress" required>
 			</div>
-			
-			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-					<input type="text" class="form-control" placeholder="email" name="emailAddress" required>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-unlock"></i></span>
-					<input type="password" class="form-control" placeholder="password" name="password" required>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-					<input type="password" class="form-control" placeholder="password confirmation" name="passwordConfirmation" required>
-				</div>
-			</div>
-			
-			<a class="btn" href="/auth/facebook/">
-				<i class="fa fa-facebook"></i> facebook
-			</a>
-			
-			<a class="btn" href="/auth/google/">
-				<i class="fa fa-google"></i> google
-			</a>
-			
-			<button type="submit" class="btn btn-default pull-right">register</button>
-		</form>
+		</div>
 		
-    </div>    
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-unlock"></i></span>
+				<input type="password" class="form-control" placeholder="password" name="password" required>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+				<input type="password" class="form-control" placeholder="password confirmation" name="passwordConfirmation" required>
+			</div>
+		</div>
+		
+		<a class="btn" href="/auth/facebook/">
+			<i class="fa fa-facebook"></i> facebook
+		</a>
+		
+		<a class="btn" href="/auth/google/">
+			<i class="fa fa-google"></i> google
+		</a>
+		
+		<button type="submit" class="btn btn-default pull-right">register</button>
+	</form>
+		
 </div>

@@ -49,46 +49,44 @@
   <body>
 
 	
-  
-	<!-- Wrap all page content here -->
-    <div id="wrap">
-		<div class="top-bar">
-			<div class="container clearfix">
-				<a href="/"><img class="logo" src="/images/logo.jpg" /></a>	
-				
-				<%if (!req.isAuthenticated()) { %>
-					<a class="pull-right btn" href="/login">login</a>
-				
-					<a class="pull-right btn" href="/register">register</a>	
-				<% } else { %>				
-					<a class="pull-right btn" href="/logout">logout</a>
-				
-					<a class="pull-right btn" href="/"> <%= req.session.passport.user.name %> </a>	
-				<% } %>
-				
-			</div>
-		</div>
-	
-		<!-- Begin page content -->
-		<div class="container">
-		
-			<!-- Include the view file for the current controller/route -->
-			<%- body %>
+  <div id="wrap">
+  	<nav class="navbar navbar-fixed-top" role="navigation">
+      <div class="container">
+  		   <a href="/"><img class="logo" src="/images/logo.jpg" /></a>	
+  			
+  			<%if (!req.isAuthenticated()) { %>
+  				<a class="pull-right btn" href="/login">login</a>
+  			
+  				<a class="pull-right btn" href="/register">register</a>	
+  			<% } else { %>				
+  				<a class="pull-right btn" href="/logout">logout</a>
+  			
+  				<a class="pull-right btn" href="/"> <%= req.session.passport.user.name %> </a>	
+  			<% } %>
+  			
+  		</div>
+  	</nav>
 
-		</div>
-    </div>    
+   <!-- Begin page content -->
+  	<div class="container">
+  	
+  		<!-- Include the view file for the current controller/route -->
+  		<%- body %>
+
+    </div>  
+  </div>  
 
 	<div id="footer">
-      <div class="container sitePage">
-            <p >
-                <small>
-                    &nbsp;&nbsp;<a href="/AboutUs">About Us</a>
-                    &nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/TermsAndConditions">Terms & Conditions</a>
-                    &nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/ContactUs">Contact Us</a>
-                </small>
-            </p>
-        </div>        
-    </div>
+    <div class="container sitePage">
+          <p >
+              <small>
+                  &nbsp;&nbsp;<a href="/AboutUs">About Us</a>
+                  &nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/TermsAndConditions">Terms & Conditions</a>
+                  &nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/ContactUs">Contact Us</a>
+              </small>
+          </p>
+      </div>        
+  </div>
 	
     <!--
 
