@@ -3,5 +3,5 @@ $(function() {
 	  valueNames: [ 'gameName', 'gameDescription' ]
 	};
 
-	var userList = new List('games', options);
+	var gameList = new List('games', options);
 });

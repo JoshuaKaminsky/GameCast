@@ -1,26 +1,45 @@
 <div class="main">
-    <div class="row">
-    	<div class="col-md-4"><img class="img-responsive" src='<%= game.imageUrl %>'></div>
-    	<div class="col-md-8">
-    		<h1><%= game.name %></h1>
+    <div style="border: 2px solid black; margin-bottom: 15px; padding: 10px;" class="row">
+    	<div class="col-md-3"><img class="img-responsive" src='<%= game.imageUrl %>'></div>
+    	<div class="col-md-9">
+    		<h1 style="margin-bottom: 10px;"><%= game.name %></h1>
     		<p><%= game.description %></p>
     	</div>
 	</div>
 
-    <% for( var i = 0; i < gameInstances.length; i++ ) {%>
-    	<div class="row">
-	    		<div class="col-md-4">Game ID</div>
-	    		<div class="col-md-4">Game Name</div>
-	    		<div class="col-md-4">Players</div>
-    	</div>
-        <div class="row">
-            <div class="col-md-4"><%= gameInstances[i].gameId %></div>
-            <div class="col-md-4"><%= gameInstances[i].name %></div>
-            <div class="col-md-4">
-            <% for( var j = 0; j < gameInstances[i].playerNames.length; j++) {%>
-            	<div class="col-md-2"><%= gameInstances[i].playerNames[j] %></div>
-            <% } %>
-            </div>
+    <div id='gameInstances'>
+        <div class="input-group">
+              <input type="text" class="search form-control" placeholder="search"/>
+              <span class="input-group-addon"><i class="fa fa-search"></i></span>
         </div>
-    <% } %>
+        
+        <hr/>
+
+        <div style="font-weight: bold;" class="row">
+            <div class="col-md-2">Name</div>
+            <div class="col-md-2">Status</div>
+            <div class="col-md-7">Players</div>
+        </div>
+        
+        <ul style="margin-top: 2px" class="list">
+            <% for( var i = 0; i < gameInstances.length; i++ ) {%>
+                <li class="row" style="padding: 5px; border: 1px solid black;">
+                    <div style="line-height:2" class="col-md-2 gameInstanceName"><%= gameInstances[i].name %></div>
+                    <div style="line-height:2" class="col-md-2"> 
+                        <%if (gameInstances[i].status) { %> 
+                            <%= gameInstances[i].status %> 
+                        <% } else { %>  
+                            unknown
+                        <% } %>
+                    </div>
+                    <div style="line-height:2" class="col-md-7 gameInstancePlayer">
+                        <% for( var j = 0; j < gameInstances[i].playerNames.length; j++) {%>
+                        	<%= gameInstances[i].playerNames[j] %>
+                        <% } %>
+                    </div>
+                    <div class='pull-right'><div style="margin:0;" class='btn'>join</div></div>
+                </li>
+            <% } %>
+        </ul>
+    </div>
 </div>
