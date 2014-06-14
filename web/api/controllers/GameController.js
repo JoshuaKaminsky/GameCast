@@ -34,9 +34,18 @@ module.exports = {
 					return console.log(err)
 				}
 
+				if(!gameInstances || gameInstances.length == 0) {
+					return res.view({
+						'game' : game,
+						'gameInstances' : gameInstances
+					});
+				}
+
 				for (var gameInstanceIndex = 0; gameInstanceIndex < gameInstances.length; gameInstanceIndex++) {
 					var gameInstance = gameInstances[gameInstanceIndex];
 					gameInstance.playerNames = [];
+
+
 
 					User.find({
 						'id' : gameInstance.playerIds
