@@ -1,33 +1,33 @@
 module.exports = {
 
-  attributes: {
-  	
-  	gameId: {
-  		type: 'string',
-  		required: true
-  	},
+    attributes: {
 
-  	playerIds: {
-  		type: 'array',
-  	},
+        gameId: {
+            type: 'string',
+            required: true
+        },
 
-	ownerId: {
-		type: 'string',
-  		required: true
-	},
-	
-  	name: {
-		type: 'string',
-  		required: true
-	},
+        playerIds: {
+            type: 'array',
+        },
 
-  	status : {
-		type: 'string',
-  		required: true
-	},
+        ownerId: {
+            type: 'string',
+            required: true
+        },
 
-	gameStateKey : 'string'
-	
-  }
+        name: {
+            type: 'string',
+            required: true
+        },
+
+        status: {
+            type: 'string',
+            required: true
+        },
+
+        gameStateKey: 'string'
+
+    }
 
 };

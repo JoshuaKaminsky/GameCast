@@ -1,16 +1,28 @@
-<div class="main">
-	<ul>
+<div id='games' class="main">
+	<div class="input-group">
+		  <input type="text" class="search form-control" placeholder="search"/>
+		  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+	</div>
+	
+	<hr/>
+
+	<ul class='list'>
 		<% for( var i = 0; i < games.length; i++ ) {%>
 			<li class='gameTemplate'>
 				<div class="gameImage">
 					<img class="center-block img-responsive" src='<%= games[i].imageUrl %>'>
 				</div>
-				<label><%= games[i].name %></label>
+				<label class='gameName'><%= games[i].name %></label>
 				<small class="pull-right"><%= games[i].minPlayers %> to <%= games[i].maxPlayers %> players </small>
 				<hr/>
-				<p><%= games[i].description %></p>
+				<p class='gameDescription'><%= games[i].description %></p>
 				<a href="game/lounge/<%= games[i].id %>" class="btn btn-sm pull-right">play</a>
 			</li>
 		<% } %>
 	</ul>
 </div>
+
+<script type="text/javascript">
+
+
+</script>

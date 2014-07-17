@@ -25,7 +25,12 @@ module.exports.policies = {
   'auth': {
     '*': true,
 	'logout': 'authenticated'
+  },
+
+  HomeController: {
+    '*': true,
   }
+
 
   /*
 	// Here's an example of adding some policies to a controller

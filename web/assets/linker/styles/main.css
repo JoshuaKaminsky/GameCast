@@ -121,185 +121,47 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	outline: 0 none;
 }
 
-/* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
   height: auto;
   /* Negative indent footer by its height */
-  margin: 0 auto -60px;
+  margin: 0 auto -45px;
   /* Pad bottom by footer height */
-  padding: 0 0 60px;
+  padding: 0 0 45px;
 }
 
-/* Set the fixed height of the footer here */
 #footer {
-  height: 60px;
-  background-color: #001c20;
-}
-
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-
-#footer .container {
-	height: 60px;
-}
-
-#footer p {
-	display: inline-block;
-	vertical-align: middle;
-	height: 100%;
-}
-
-.container {
-    max-width: 1050px;
-	width: auto;
-    margin: 0 auto;
-    padding: 0 4%
-}
-
-.sprite {
-    font-weight: normal;
-    background: url(http://sailsjs.org/images/newapp.sprite.png) no-repeat
-}
-
-.top-bar {
-    position: relative;
-    padding-top: 10px;
+    width: 100%;
+    height: 45px;
     background-color: #001c20;
 }
 
-.main {
-	margin: 20px;
-    margin-top: 50px
+#footer .container {
+	height: 45px;
+    margin: auto; 
+    padding: 5px 0; 
+    text-align: center;
 }
 
-.steps {
-    height: 250px
+#footer p {
+    color: white;
 }
 
-.getting-started p {
-    margin-bottom: 30px;
-    line-height: 26px;
+#wrap > .container {
+    max-width: 1050px;
+    padding: 75px 0 45px 0;
 }
 
-.getting-started div {
-    float: left;
-    width: 540px
+.navbar {
+    background-color: #001c20;
 }
 
-.getting-started li {
-    clear: both;
-    height: 60px;
-    margin-top: 20px;
-    margin-bottom: 20px
+.navbar .container {
+    margin: 0 auto;
 }
 
-.getting-started .sprite {
-    margin-left: 10px;
-    padding-left: 60px;
-    height: 42px;
-    width: 0
-}
-
-.getting-started .one {
-    background-position: 0 0
-}
-
-.getting-started .two {
-    background-position: 0 -42px
-}
-
-.getting-started .three {
-    background-position: 0 -83px
-}
-
-.delete {
-    margin-top: 5%;
-    height: 52px;
-    background: #e3f0f1;
-    border: 1px solid #118798;
-    color: #118798;
-    clear: both
-}
-
-.delete .sprite {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 9%;
-    padding-left: 42px;
-    padding-top: 7px;
-    height: 25px;
-    background-position: 0 -126px
-}
-
-.delete a {
-    color: #0c8da0;
-    font-weight: bold;
-    padding-left: 1%
-}
-
-.side-bar {
-    max-width: 327px;
-    height: 555px;
-    float: left;
-    border-left: 1px solid #0c8da0;
-    margin-left: 25px;
-    margin-top: 50px;
-    padding-left: 25px
-}
-
-.side-bar ul {
-    margin-bottom: 10%
-}
-
-.side-bar ul li {
-    margin-top: 5px;
-    margin-bottom: .25em
-}
-
-.side-bar ul li a {
-    margin-bottom: .25em
-}
-
-.side-bar .sprite {
-    padding-left: 25px
-}
-
-.side-bar .single_page {
-    background-position: 0 -199px
-}
-
-.side-bar .traditional {
-    background-position: 0 -219px
-}
-
-.side-bar .realtime {
-    background-position: 0 -179px
-}
-
-.side-bar .api {
-    background-position: 0 -158px
-}
-
-.boxy {
-    font-family: Courier, "Courier New", sans-serif;
-    background-color: #e4edec;
-    border: 1px solid #d0d6d6;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    font-weight: 100
-}
-
-.sixteen {
-    margin-right: 10px
-}
-
-.nineteen {
-    margin-right: 7px
+.navbar .btn {
+    margin: 10px 0 0 0;
 }
 
 .btn {
@@ -327,6 +189,10 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .logo {
 	width: 165px;
 	display: inline-block;
+}
+
+#games ul{
+    margin-top: 0;
 }
 
 .gameTemplate {
@@ -368,4 +234,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 .gameTemplate .btn {
 	margin-bottom: 0;
+}
+
+.caret-reversed {
+    border-top-width: 0;
+    border-bottom: 4px solid;
 }

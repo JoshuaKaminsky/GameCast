@@ -28,7 +28,7 @@
 	
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-	<link href='/styles/main.css' rel='stylesheet'/>
+	<link href='/linker/styles/main.css' rel='stylesheet'/>
     
 	<link rel="shortcut icon" href="/favicon.ico?v=2" />
 	
@@ -49,40 +49,44 @@
   <body>
 
 	
-  
-	<!-- Wrap all page content here -->
-    <div id="wrap">
-		<div class="top-bar">
-			<div class="container clearfix">
-				<a href="/"><img class="logo" src="/images/logo.jpg" /></a>	
-				
-				<%if (!req.isAuthenticated()) { %>
-					<a class="pull-right btn" href="/login">login</a>
-				
-					<a class="pull-right btn" href="/register">register</a>	
-				<% } else { %>				
-					<a class="pull-right btn" href="/logout">logout</a>
-				
-					<a class="pull-right btn" href="/"> <%= req.session.passport.user.name %> </a>	
-				<% } %>
-				
-			</div>
-		</div>
-	
-		<!-- Begin page content -->
-		<div class="container">
-		
-			<!-- Include the view file for the current controller/route -->
-			<%- body %>
+  <div id="wrap">
+  	<nav class="navbar navbar-fixed-top" role="navigation">
+      <div class="container">
+  		   <a href="/"><img class="logo" src="/images/logo.jpg" /></a>	
+  			
+  			<%if (!req.isAuthenticated()) { %>
+  				<a class="pull-right btn" href="/login">login</a>
+  			
+  				<a class="pull-right btn" href="/register">register</a>	
+  			<% } else { %>				
+  				<a class="pull-right btn" href="/logout">logout</a>
+  			
+  				<a class="pull-right btn" href="/"> <%= req.session.passport.user.name %> </a>	
+  			<% } %>
+  			
+  		</div>
+  	</nav>
 
-		</div>
-    </div>    
+   <!-- Begin page content -->
+  	<div class="container">
+  	
+  		<!-- Include the view file for the current controller/route -->
+  		<%- body %>
+
+    </div>  
+  </div>  
 
 	<div id="footer">
-      <div class="container">
-        <p class="text-muted">gamecast, 2014</p>
-      </div>
-    </div>
+    <div class="container sitePage">
+          <p >
+              <small>
+                  &nbsp;&nbsp;<a href="/AboutUs">About Us</a>
+                  &nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/TermsAndConditions">Terms & Conditions</a>
+                  &nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/ContactUs">Contact Us</a>
+              </small>
+          </p>
+      </div>        
+  </div>
 	
     <!--
 
@@ -95,18 +99,23 @@
       Here's an example of importing a few dependencies, in order:
     -->
     <!-- Bring in the socket.io client -->
-    <script type="text/javascript" src="/js/socket.io.js"></script>
+    <script type="text/javascript" src="/linker/js/socket.io.js"></script>
     <!-- then beef it up with some convenience logic for talking to Sails.js -->
-    <script type="text/javascript" src="/js/sails.io.js"></script>
+    <script type="text/javascript" src="/linker/js/sails.io.js"></script>
     <!-- listen on socket.io for incoming messages -->
-    <script type="text/javascript" src="/js/app.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/linker/js/app.js"></script>
+
+    <script type="text/javascript" src="/linker/js/list.js"></script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <!-- Your scripts here? -->
     <!-- Your scripts here? -->
     <!-- Your scripts here? -->
 
+    <script type="text/javascript" src="/linker/js/lounge.js"></script>
+    <script type="text/javascript" src="/linker/js/game.js"></script>
 
     <!--
 
