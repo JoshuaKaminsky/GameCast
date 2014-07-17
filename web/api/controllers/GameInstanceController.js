@@ -23,7 +23,7 @@ module.exports = {
     var gameId = request.body.gameId;
     var user = request.user;
 
-    GameInstance.create({ name: name, isPublic: isPublic, status: 'pending', gameId: gameId, ownerId: user.id})
+    GameInstance.create({ name: name, isPublic: isPublic, status: 'pending', gameId: gameId, ownerId: user.id, playerIds: [ user.id ]})
       .done(function(error, game) {
         if(error) {
           console.log(error);
@@ -40,7 +40,7 @@ module.exports = {
   	GameInstance.findOne( { 'id' : gameInstanceId } ).done(
   		function(err, gameInstance) {
   			if (err) {
-  				return console.log("fuck you (gameInstanceController")
+  				return console.log("fuck you gameInstanceController")
   			}
 
   			console.log("gameInstance = %j", gameInstance)

@@ -24,7 +24,7 @@ module.exports = {
 		var maxPlayers = req.param('maxPlayers');
 		var imageUrl = req.param('imageUrl');
 
-		Game.create({ name: name, description: description, minPlayers: minPlayers, maxPlayers: maxPlayers, imageUrl: imageUrl})
+		Game.create({ name: name, description: description, minPlayers: minPlayers, maxPlayers: maxPlayers, imageUrl: imageUrl })
 			.done(function(error, game) {
 				if(error) {
 					console.log(error);
@@ -41,7 +41,7 @@ module.exports = {
 					return gameInstances;						
 				});
 
-				// var userIds = gameInstances.map(function(instance){ return instance.playerIds; });
+			// var userIds = gameInstances.map(function(instance){ return instance.playerIds; });
 
 				// console.log('userIds: %j', userIds);
 
@@ -71,6 +71,10 @@ module.exports = {
 			}).spread(function(game, gameInstances) {
 				var playerIds = gameInstances.map(function(){ return this.playerIds ? this.playerIds.get() : []; });
 				var filtered = playerIds.filter(function(id, index) { return playerIds.indexOf(id) === index; });
+
+				console.log("game instances: %j", gameInstances);
+				console.log("filtered player list: %j", filtered);
+
 
 				return response.view({ game: game, gameInstances: gameInstances });
 			}).fail(function(error){
