@@ -20,4 +20,10 @@ $(function() {
 				}
 			});
 	});
+
+	$('#join').click(function(event) {
+		var gameInstanceId = $(event.target).data("gameInstanceId")
+
+		$.post('/gameInstance/addPlayer', { gameInstanceId: gameInstanceId });
+	})
 });

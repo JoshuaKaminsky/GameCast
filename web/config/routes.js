@@ -64,7 +64,7 @@ module.exports.routes = {
     action     : 'game'
   },
 
-  '/gameInstance/addPlayer/:id/:playerId' : {
+  'post gameInstance/addPlayer/:gameInstanceId/:playerId' : {
     controller : 'GameInstanceController',
     action     : 'addPlayer'
   },

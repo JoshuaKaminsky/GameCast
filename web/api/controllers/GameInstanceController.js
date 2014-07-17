@@ -35,8 +35,8 @@ module.exports = {
   },
 
   'addPlayer' : function(req, res) {
-  	var gameInstanceId = req.param('id')
-  	var playerId = req.param('playerId')
+  	var gameInstanceId = req.param('gameInstanceId')
+  	var playerId = req.session.passport.user.id
   	GameInstance.findOne( { 'id' : gameInstanceId } ).done(
   		function(err, gameInstance) {
   			if (err) {
