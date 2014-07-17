@@ -26,7 +26,12 @@ module.exports = {
             required: true
         },
 
-        gameStateKey: 'string'
+        gameStateKey: 'string',
+
+        isPublic: {
+            type: 'boolean',
+            required: true
+        }
 
     }
 

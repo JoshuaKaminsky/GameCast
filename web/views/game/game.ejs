@@ -7,6 +7,22 @@
     	</div>
 	</div>
 
+    <div id='newGame'>
+        <form class="form-inline" role="form">
+          <input id='gameId' type='hidden' value='<%=game.id %>'/>
+          <div class="form-group">
+            <label class="sr-only" for="newGameName">Game Name</label>
+            <input class="form-control" id="newGameName" placeholder="name">
+          </div>
+          <div class="checkbox">
+            <label>
+              <input id='newGameIsPublic' type="checkbox"> public
+            </label>
+          </div>
+          <div id='newGameBtn' class="btn btn-default">New Game</div>
+        </form>
+    </div>    
+
     <div id='gameInstances'>
         <div class="input-group">
               <input type="text" class="search form-control" placeholder="search"/>
@@ -17,6 +33,7 @@
 
         <div style="font-weight: bold;" class="row">
             <div class="col-md-2">Name</div>
+            <div class="col-md-2"></div>
             <div class="col-md-2">Status</div>
             <div class="col-md-7">Players</div>
         </div>
@@ -25,6 +42,7 @@
             <% for( var i = 0; i < gameInstances.length; i++ ) {%>
                 <li class="row" style="padding: 5px; border: 1px solid black;">
                     <div style="line-height:2" class="col-md-2 gameInstanceName"><%= gameInstances[i].name %></div>
+                    
                     <div style="line-height:2" class="col-md-2"> 
                         <%if (gameInstances[i].status) { %> 
                             <%= gameInstances[i].status %> 
@@ -32,11 +50,17 @@
                             unknown
                         <% } %>
                     </div>
+                    
                     <div style="line-height:2" class="col-md-7 gameInstancePlayer">
-                        <% for( var j = 0; j < gameInstances[i].playerNames.length; j++) {%>
-                        	<%= gameInstances[i].playerNames[j] %>
+                        <%if (gameInstances[i].playerNames) { %>
+                            <% for( var j = 0; j < gameInstances[i].playerNames.length; j++) {%>
+                            	<%= gameInstances[i].playerNames[j] %>
+                            <% } %>
+                        <% } else { %>
+                            no players
                         <% } %>
                     </div>
+
                     <div class='pull-right'><div style="margin:0;" class='btn'>join</div></div>
                 </li>
             <% } %>

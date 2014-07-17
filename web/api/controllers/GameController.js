@@ -17,67 +17,65 @@
 
 module.exports = {
 
-	game : function (req, res) {
-		// Request includes the game ID, let's find it.
-		Game.findOne({
-			'id' : req.param('id')
-		}).done(function (err, game) {
-			if (err) {
-				return console.log(err)
-			}
+	newGame : function(request, response) {
+		var name = req.param('name');
+		var description = req.param('description');
+		var minPlayers = req.param('minPlayers');
+		var maxPlayers = req.param('maxPlayers');
+		var imageUrl = req.param('imageUrl');
 
-			// Found a game, what are its instances??
-			GameInstance.find({
-				gameId : game.id
-			}).done(function (err, gameInstances) {
-				if (err) {
-					return console.log(err)
+		Game.create({ name: name, description: description, minPlayers: minPlayers, maxPlayers: maxPlayers, imageUrl: imageUrl})
+			.done(function(error, game) {
+				if(error) {
+					console.log(error);
 				}
 
-				if(!gameInstances || gameInstances.length == 0) {
-					return res.view({
-						'game' : game,
-						'gameInstances' : gameInstances
-					});
-				}
 
-				for (var gameInstanceIndex = 0; gameInstanceIndex < gameInstances.length; gameInstanceIndex++) {
-					var gameInstance = gameInstances[gameInstanceIndex];
-					gameInstance.playerNames = [];
+			})
+	},
 
+	game : function (request, response) {
+		Game.findOne({'id' : request.param('id')})
+			.then(function (game) {
+				var gameInstances = GameInstance.find({ gameId: game.id }).then(function(gameInstances){
+					return gameInstances;						
+				});
 
+				// var userIds = gameInstances.map(function(instance){ return instance.playerIds; });
 
-					User.find({
-						'id' : gameInstance.playerIds
-					}).done(function (err, players) {
-						if (err) {
-							return console.log(err);
-						}
+				// console.log('userIds: %j', userIds);
 
-						console.log('players : %j', players);
+			// GameInstance.find({
+			// 	gameId : game.id
+			// }).then(function (err, gameInstances) {
+			// 	for (var gameInstanceIndex = 0; gameInstanceIndex < gameInstances.length; gameInstanceIndex++) {
+			// 		gameInstances[gameInstanceIndex].playerNames = User.find({'id' : gameInstance.playerIds})
+			// 			.then(function (players) {
+			// 				var playerNames = [];
+			// 				for (var playerIndex = 0; playerIndex < players.length; playerIndex++) {
+			// 					var player = players[playerIndex];
 
-						for (var playerIndex = 0; playerIndex < players.length; playerIndex++) {
-							var player = players[playerIndex];
+			// 					if (!player) {
+			// 						console.log("Can't find user for id: %s", players[playerIndex])
+			// 					} else {
+			// 						playerNames.push(player.name);
+			// 					}
+			// 				}
 
-							if (!player) {
-								console.log("Can't find user for id: %s", players[playerIndex])
-								return res.send(201);
-							}
+			// 				return playerNames;
+			// 			}).done();
+			// 	}
 
-							gameInstance.playerNames.push(player.name);
-						}
+				return [game, gameInstances];
+				
+			}).spread(function(game, gameInstances) {
+				var playerIds = gameInstances.map(function(){ return this.playerIds ? this.playerIds.get() : []; });
+				var filtered = playerIds.filter(function(id, index) { return playerIds.indexOf(id) === index; });
 
-						console.log('gameInstance %j', gameInstances);
-
-						return res.view({
-							'game' : game,
-							'gameInstances' : gameInstances
-						});
-					});
-				}
+				return response.view({ game: game, gameInstances: gameInstances });
+			}).fail(function(error){
+				console.log(error);
 			});
-
-		});
 	},
 
 	/**
