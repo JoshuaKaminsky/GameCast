@@ -35,7 +35,6 @@
 
         <div style="font-weight: bold;" class="row">
             <div class="col-md-2">Name</div>
-            <div class="col-md-2"></div>
             <div class="col-md-2">Status</div>
             <div class="col-md-7">Players</div>
         </div>
@@ -53,7 +52,9 @@
                         <% } %>
                     </div>
                     
-                    <div style="line-height:2" class="col-md-7 gameInstancePlayer">
+                    <div data-gameInstanceId="<%= gameInstances[i].id %>" 
+                         style="line-height:2" 
+                         class="col-md-7 gameInstancePlayer">
                         <%if (gameInstances[i].playerNames) { %>
                             <% for( var j = 0; j < gameInstances[i].playerNames.length; j++) {%>
                             	<%= gameInstances[i].playerNames[j] %>
@@ -63,7 +64,9 @@
                         <% } %>
                     </div>
 
-                    <div data-gameInstanceId="<%= gameInstances[i].id %>" class='btn pull-right'>join</div>
+                    <%if (! $.inArray(req.session.passport.user.id, gameInstances[i].player.ids)) { %>
+                        <div data-gameInstanceId="<%= gameInstances[i].id %>" class='btn pull-right join-button'>join</div>
+                    <% } %>
                 </li>
             <% } %>
         </ul>

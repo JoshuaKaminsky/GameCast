@@ -15,6 +15,8 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
+var _ = require('underscore-node')
+
 module.exports = {
     
   newGameInstance : function(request, response) {
@@ -36,7 +38,9 @@ module.exports = {
 
   'addPlayer' : function(req, res) {
   	var gameInstanceId = req.param('gameInstanceId')
+    console.log("gameInstanceController.addPLayer() gameInstanceId=%s", gameInstanceId)
   	var playerId = req.session.passport.user.id
+    console.log("gameInstanceController.addPlayer() playerId=%s", playerId)
   	GameInstance.findOne( { 'id' : gameInstanceId } ).done(
   		function(err, gameInstance) {
   			if (err) {
@@ -48,15 +52,18 @@ module.exports = {
   			// update its players
   			if (!gameInstance.playerIds) {
   				gameInstance.playerIds = [ ]
-  			}
+  			} else if (_.contains(gameInstance.playerIds, playerId)) {
+            return req.session.passport.user
+        }
 
   			gameInstance.playerIds.push(playerId);
 
   			gameInstance.save(function(err) {
   				if (err) {
-  					return console.log("Can't update gameInstance: %s", err)
+  					console.log("Can't update gameInstance: %s", err)
+            return res.send(500)
   				} else {
-  					return res.send(200)
+  					return req.session.passport.user
   				}
   			})
 

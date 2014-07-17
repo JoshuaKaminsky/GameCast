@@ -21,9 +21,10 @@ $(function() {
 			});
 	});
 
-	$('#join').click(function(event) {
-		var gameInstanceId = $(event.target).data("gameInstanceId")
-
+	$('.join-button').click(function(event) {
+		var target = $(event.target)
+		target.hide()
+		var gameInstanceId = target.data("gameinstanceid")
 		$.post('/gameInstance/addPlayer', { gameInstanceId: gameInstanceId });
 	})
 });
