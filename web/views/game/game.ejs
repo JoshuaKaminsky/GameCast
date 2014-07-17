@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" id="gameInstanceView">
     <div style="border: 2px solid black; margin-bottom: 15px; padding: 10px;" class="row">
     	<div class="col-md-3"><img class="img-responsive" src='<%= game.imageUrl %>'></div>
     	<div class="col-md-9">
@@ -7,8 +7,10 @@
     	</div>
 	</div>
 
-    <div id='newGame'>
-        <form class="form-inline" role="form">
+    <div id='newGameDialogBtn' class="btn btn-default" data-toggle="collapse" data-parent="accordion" href="#newGame">Create a new game!</div>
+
+    <div id='newGame' class="collapse" >
+        <form class="form-inline" role="form" style="border: 2px solid black; margin-bottom: 15px; padding: 10px;">
           <input id='gameId' type='hidden' value='<%=game.id %>'/>
           <div class="form-group">
             <label class="sr-only" for="newGameName">Game Name</label>
@@ -19,7 +21,7 @@
               <input id='newGameIsPublic' type="checkbox"> public
             </label>
           </div>
-          <div id='newGameBtn' class="btn btn-default">New Game</div>
+          <div id='newGameBtn' class="btn btn-default pull-right" style="margin: 0">Create</div>
         </form>
     </div>    
 
@@ -61,7 +63,7 @@
                         <% } %>
                     </div>
 
-                    <div class='pull-right'><div style="margin:0;" class='btn'>join</div></div>
+                    <div class='btn pull-right'>join</div>
                 </li>
             <% } %>
         </ul>

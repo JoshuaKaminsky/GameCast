@@ -219,14 +219,10 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 
 .gameTemplate p {
-	display: block; /* Fallback for non-webkit */
 	display: -webkit-box;
 	width: 250px;
-	height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
 	margin: 0 auto;
 	font-size: .75em;
-	line-height: $line-height;
-	-webkit-line-clamp: $lines-to-show;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -239,4 +235,10 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .caret-reversed {
     border-top-width: 0;
     border-bottom: 4px solid;
+}
+
+#gameInstanceView {
+    .btn.pull-right {
+        margin: 0;
+    }
 }
