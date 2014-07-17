@@ -82,6 +82,21 @@ module.exports.routes = {
   '/contactUs' : {
     controller : 'HomeController',
     action : 'contactUs'      
+  },
+
+  '/admin' : {
+    controller : 'AdminController',
+    action : 'admin'
+  },
+
+  'post /admin/newGame' : {
+    controller : 'GameController',
+    action : 'newGame'
+  },
+
+  'post /newGame' : {
+    controller : 'GameInstanceController',
+    action : 'newGameInstance'
   }
   
   /*

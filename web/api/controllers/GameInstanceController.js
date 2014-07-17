@@ -17,6 +17,23 @@
 
 module.exports = {
     
+  newGameInstance : function(request, response) {
+    var name = request.body.name;
+    var isPublic = request.body.isPublic;
+    var gameId = request.body.gameId;
+    var user = request.user;
+
+    GameInstance.create({ name: name, isPublic: isPublic, status: 'pending', gameId: gameId, ownerId: user.id})
+      .done(function(error, game) {
+        if(error) {
+          console.log(error);
+          return response.json(error, 500);
+        }
+
+        return response.json(game, 200);        
+      })
+  },
+
   'addPlayer' : function(req, res) {
   	var gameInstanceId = req.param('id')
   	var playerId = req.param('playerId')
@@ -32,7 +49,9 @@ module.exports = {
   			if (!gameInstance.playerIds) {
   				gameInstance.playerIds = [ ]
   			}
-  			gameInstance.playerIds.push(playerId)
+
+  			gameInstance.playerIds.push(playerId);
+
   			gameInstance.save(function(err) {
   				if (err) {
   					return console.log("Can't update gameInstance: %s", err)
