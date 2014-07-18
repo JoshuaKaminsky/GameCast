@@ -41,7 +41,7 @@
         
         <ul style="margin-top: 2px" class="list">
             <% for( var i = 0; i < gameInstances.length; i++ ) {%>
-                <li class="row" style="padding: 5px; border: 1px solid black;">
+                <li class="row gameInstance" style="padding: 5px; border: 1px solid black;">
                     <div style="line-height:2" class="col-md-2 gameInstanceName"><%= gameInstances[i].name %></div>
                     
                     <div style="line-height:2" class="col-md-2"> 
@@ -64,7 +64,7 @@
                         <% } %>
                     </div>
 
-                    <%if (! $.inArray(req.session.passport.user.id, gameInstances[i].player.ids)) { %>
+                    <%if (!_.contains(gameInstances[i].playerIds, req.session.passport.user.id)) { %>
                         <div data-gameInstanceId="<%= gameInstances[i].id %>" class='btn pull-right join-button'>join</div>
                     <% } %>
                 </li>

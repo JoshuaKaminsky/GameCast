@@ -25,6 +25,14 @@ $(function() {
 		var target = $(event.target)
 		target.hide()
 		var gameInstanceId = target.data("gameinstanceid")
-		$.post('/gameInstance/addPlayer', { gameInstanceId: gameInstanceId });
+		$.post('/gameInstance/addPlayer', { gameInstanceId: gameInstanceId })
+			.done(function(player) {
+				if(player) {
+					var parent = target.parent;
+				}
+			})
+			.fail(function(error) {
+
+			});
 	})
 });
