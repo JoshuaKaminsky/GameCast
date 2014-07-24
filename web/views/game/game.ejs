@@ -55,13 +55,10 @@
                     <div data-gameInstanceId="<%= gameInstances[i].id %>" 
                          style="line-height:2" 
                          class="col-md-7 gameInstancePlayer">
-                        <%if (gameInstances[i].playerNames) { %>
-                            <% for( var j = 0; j < gameInstances[i].playerNames.length; j++) {%>
-                            	<%= gameInstances[i].playerNames[j] %>
-                            <% } %>
-                        <% } else { %>
-                            no players
-                        <% } %>
+                         <%= gameInstances[i].playerIds.length %> player 
+                         <%if (gameInstances[i].playerIds.length != 1) { %>
+                         s
+                         <% } %>
                     </div>
 
                     <%if (!_.contains(gameInstances[i].playerIds, req.session.passport.user.id)) { %>

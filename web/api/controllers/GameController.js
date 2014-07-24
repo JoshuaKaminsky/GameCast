@@ -29,20 +29,17 @@ module.exports = {
 				if(error) {
 					console.log(error);
 				}
+
+
 			})
 	},
 
 	game : function (request, response) {
 		Game.findOne({'id' : request.param('id')})
 			.then(function (game) {
-				var gameInstances = GameInstance.find({ gameId: game.id }).then(function(gameInstances){
-					return gameInstances;						
+				GameInstance.find({ gameId: game.id }).then(function(gameInstances){
+					return response.view({ game: game, gameInstances: gameInstances });					
 				});
-
-				return response.view({ game: game, gameInstances: gameInstances });
-				
-			}).fail(function(error){
-				console.log(error);
 			});
 	},
 
