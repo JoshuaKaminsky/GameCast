@@ -1,7 +1,7 @@
 $(function() {
 
 	var options = {
-	  valueNames: [ 'gameInstanceName', 'gameInstancePlayer' ]
+	  valueNames: [ 'id', 'gameInstanceName', 'gameInstancePlayer' ]
 	};
 
 	var gameInstanceList = new List('gameInstances', options);
@@ -24,6 +24,7 @@ $(function() {
 	$('.join-button').click(function(event) {
 		var target = $(event.target)
 		target.hide()
+
 		var gameInstanceId = target.data("gameinstanceid")
 		$.post('/gameInstance/addPlayer', { gameInstanceId: gameInstanceId })
 			.done(function(player) {
@@ -34,5 +35,5 @@ $(function() {
 			.fail(function(error) {
 
 			});
-	})
+	});
 });

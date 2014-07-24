@@ -29,8 +29,6 @@ module.exports = {
 				if(error) {
 					console.log(error);
 				}
-
-
 			})
 	},
 
@@ -41,42 +39,8 @@ module.exports = {
 					return gameInstances;						
 				});
 
-			// var userIds = gameInstances.map(function(instance){ return instance.playerIds; });
-
-				// console.log('userIds: %j', userIds);
-
-			// GameInstance.find({
-			// 	gameId : game.id
-			// }).then(function (err, gameInstances) {
-			// 	for (var gameInstanceIndex = 0; gameInstanceIndex < gameInstances.length; gameInstanceIndex++) {
-			// 		gameInstances[gameInstanceIndex].playerNames = User.find({'id' : gameInstance.playerIds})
-			// 			.then(function (players) {
-			// 				var playerNames = [];
-			// 				for (var playerIndex = 0; playerIndex < players.length; playerIndex++) {
-			// 					var player = players[playerIndex];
-
-			// 					if (!player) {
-			// 						console.log("Can't find user for id: %s", players[playerIndex])
-			// 					} else {
-			// 						playerNames.push(player.name);
-			// 					}
-			// 				}
-
-			// 				return playerNames;
-			// 			}).done();
-			// 	}
-
-				return [game, gameInstances];
-				
-			}).spread(function(game, gameInstances) {
-				var playerIds = gameInstances.map(function(){ return this.playerIds ? this.playerIds.get() : []; });
-				var filtered = playerIds.filter(function(id, index) { return playerIds.indexOf(id) === index; });
-
-				console.log("game instances: %j", gameInstances);
-				console.log("filtered player list: %j", filtered);
-
-
 				return response.view({ game: game, gameInstances: gameInstances });
+				
 			}).fail(function(error){
 				console.log(error);
 			});

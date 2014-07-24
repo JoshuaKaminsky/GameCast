@@ -722,7 +722,7 @@ var document = window.document,
 var List = function(id, options, values) {
 
     var self = this,
-		init,
+    init,
         Item = require('./src/item')(self),
         addAsync = require('./src/add-async')(self),
         parse = require('./src/parse')(self);
@@ -807,12 +807,12 @@ var List = function(id, options, values) {
         return added;
     };
 
-	this.show = function(i, page) {
-		this.i = i;
-		this.page = page;
-		self.update();
+  this.show = function(i, page) {
+    this.i = i;
+    this.page = page;
+    self.update();
         return self;
-	};
+  };
 
     /* Removes object from list.
     * Loops through the list and removes objects where
@@ -906,7 +906,7 @@ var List = function(id, options, values) {
 
     this.update = function() {
         var is = self.items,
-			il = is.length;
+      il = is.length;
 
         self.visibleItems = [];
         self.matchingItems = [];
@@ -916,12 +916,12 @@ var List = function(id, options, values) {
                 is[i].show();
                 self.visibleItems.push(is[i]);
                 self.matchingItems.push(is[i]);
-			} else if (is[i].matching()) {
+      } else if (is[i].matching()) {
                 self.matchingItems.push(is[i]);
                 is[i].hide();
-			} else {
+      } else {
                 is[i].hide();
-			}
+      }
         }
         self.trigger('updated');
         return self;
