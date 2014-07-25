@@ -1,7 +1,7 @@
 $(function() {
 
 	var options = {
-	  valueNames: [ 'id', 'gameInstanceName', 'gameInstancePlayer' ]
+	  valueNames: [ 'gameInstanceName', 'gameInstancePlayer', 'gameInstanceOwner' ]
 	};
 
 	var gameInstanceList = new List('gameInstances', options);

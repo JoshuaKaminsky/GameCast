@@ -14,6 +14,7 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+var _ = require('underscore-node');
 
 module.exports = {
 
@@ -38,7 +39,18 @@ module.exports = {
 		Game.findOne({'id' : request.param('id')})
 			.then(function (game) {
 				GameInstance.find({ gameId: game.id }).then(function(gameInstances){
-					return response.view({ game: game, gameInstances: gameInstances });					
+					var uniqueIds= gameInstances.map(function(gameInstance) {return gameInstance.ownerId}).filter(function(item,index,array){
+					    return index == array.indexOf(item);
+					});
+
+					User.find({'id': uniqueIds}).then(function(users) {
+						for (var index = gameInstances.length - 1; index >= 0; index--) {
+							var user = _.find(users, function(u) { return u.id == gameInstances[index].ownerId; });
+							gameInstances[index].ownerName = (user) ? user.name : 'private'
+						};
+
+						return response.view({ game: game, gameInstances: gameInstances });	
+					});									
 				});
 			});
 	},

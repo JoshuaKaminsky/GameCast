@@ -35,8 +35,12 @@
 
         <div style="font-weight: bold;" class="row">
             <div class="col-md-2">Name</div>
+            
+            <div class="col-md-3">Organizer</div>
+            
+            <div class="col-md-3">Players</div>
+
             <div class="col-md-2">Status</div>
-            <div class="col-md-7">Players</div>
         </div>
         
         <ul style="margin-top: 2px" class="list">
@@ -44,7 +48,17 @@
                 <li class="row gameInstance" style="padding: 5px; border: 1px solid black;">
                     <div style="line-height:2" class="col-md-2 gameInstanceName"><%= gameInstances[i].name %></div>
                     
-                    <div style="line-height:2" class="col-md-2"> 
+                   <div  style="line-height:2" 
+                         class="col-md-3 gameInstanceOwner">
+                        <%= gameInstances[i].ownerName %>
+                    </div>
+
+                    <div style="line-height:2" 
+                         class="col-md-3 gameInstancePlayer">
+                         <%= gameInstances[i].playerIds.length %> player<%if (gameInstances[i].playerIds.length != 1) { %>s<% } %>
+                    </div>
+
+                     <div style="line-height:2" class="col-md-2"> 
                         <%if (gameInstances[i].status) { %> 
                             <%= gameInstances[i].status %> 
                         <% } else { %>  
@@ -52,14 +66,10 @@
                         <% } %>
                     </div>
                     
-                    <div data-gameInstanceId="<%= gameInstances[i].id %>" 
-                         style="line-height:2" 
-                         class="col-md-7 gameInstancePlayer">
-                         <%= gameInstances[i].playerIds.length %> player<%if (gameInstances[i].playerIds.length != 1) { %>s<% } %>
-                    </div>
-
                     <%if (!_.contains(gameInstances[i].playerIds, req.session.passport.user.id)) { %>
                         <div data-gameInstanceId="<%= gameInstances[i].id %>" class='btn pull-right join-button'>join</div>
+                    <% } else { %>  
+                        <div data-gameInstanceId="<%= gameInstances[i].id %>" class='btn pull-right enter-button'>enter ></div>
                     <% } %>
                 </li>
             <% } %>
